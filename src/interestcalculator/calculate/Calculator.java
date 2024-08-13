@@ -76,6 +76,6 @@ public class Calculator {
             result += daysBetween * interest.getValue() * amount;
         }
         
-        return "Interest: " + result; /// 36.500;
+        return "Interest: " + result / 36500;
     }
 }

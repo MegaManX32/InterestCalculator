@@ -12,9 +12,9 @@ import java.time.LocalDate;
  */
 public class Interest {
 
-    private LocalDate startDate;
-    private LocalDate endDate;
-    private double value;
+    private final LocalDate startDate;
+    private final LocalDate endDate;
+    private final double value;
 
     public Interest(LocalDate startDate, LocalDate endDate, double value) {
         this.startDate = startDate;
