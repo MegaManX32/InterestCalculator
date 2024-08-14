@@ -57,9 +57,10 @@ public class Calculator {
         new Interest(DateCreator.date(1, 7, 2024), DateCreator.date(1, 1, 2025), 12.25)
     };
 
-    public String generate(LocalDate start, LocalDate end, double amount) {
+    public CalculatorResult generate(LocalDate start, LocalDate end, double amount) {
         
         double result = 0;
+        String description = "<html>";
         
         for (Interest interest: interests) {
             LocalDate interestStartDate = interest.getStartDate();
@@ -71,11 +72,11 @@ public class Calculator {
             if (minDate.isAfter(maxDate)) continue;
             
             double daysBetween = ChronoUnit.DAYS.between(minDate, maxDate);
-            System.out.println("" + daysBetween);
-            
+            description += "" + ((int)daysBetween) + " days at rate of " + interest.getValue() + "%<br>";
             result += daysBetween * interest.getValue() * amount;
         }
         
-        return "Interest: " + result / 36500;
+        description += "</html>";
+        return new CalculatorResult(description, "" + result / 36500);
     }
 }

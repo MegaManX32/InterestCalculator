@@ -5,6 +5,7 @@
 package interestcalculator;
 import java.time.LocalDate;
 import interestcalculator.calculate.Calculator;
+import interestcalculator.calculate.CalculatorResult;
 
 /**
  *
@@ -21,6 +22,7 @@ public class MainFrame extends javax.swing.JFrame {
         initComponents();
         setTitle("Dragan's Interest Calculator");
         setResizable(false);
+        descriptionLabel.setText("");
         LocalDate currentDate = LocalDate.now();
         startDate.setSelectedDate(currentDate);
         endDate.setSelectedDate(currentDate);
@@ -40,6 +42,8 @@ public class MainFrame extends javax.swing.JFrame {
         calculateButton = new javax.swing.JButton();
         resultLabel = new javax.swing.JLabel();
         amountTextField = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        descriptionLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -55,6 +59,9 @@ public class MainFrame extends javax.swing.JFrame {
 
         amountTextField.setText("0");
 
+        descriptionLabel.setText("jLabel1");
+        jScrollPane1.setViewportView(descriptionLabel);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -62,6 +69,7 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
                     .addComponent(amountTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(startDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -80,7 +88,9 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(endDate, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(startDate, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 112, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(amountTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -105,8 +115,9 @@ public class MainFrame extends javax.swing.JFrame {
             return;
         }
         
-        String result = calculator.generate(start, end, amount);
-        resultLabel.setText(result);
+        CalculatorResult result = calculator.generate(start, end, amount);
+        resultLabel.setText(result.getAmount());
+        descriptionLabel.setText(result.getDescription());
     }//GEN-LAST:event_calculateButtonActionPerformed
 
     /**
@@ -147,7 +158,9 @@ public class MainFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField amountTextField;
     private javax.swing.JButton calculateButton;
+    private javax.swing.JLabel descriptionLabel;
     private com.github.lgooddatepicker.components.CalendarPanel endDate;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel resultLabel;
     private com.github.lgooddatepicker.components.CalendarPanel startDate;
     // End of variables declaration//GEN-END:variables
