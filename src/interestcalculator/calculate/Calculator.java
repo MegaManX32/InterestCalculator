@@ -54,7 +54,10 @@ public class Calculator {
         
         // 2024
         new Interest(DateCreator.date(1, 1, 2024), DateCreator.date(1, 7, 2024), 12.50),
-        new Interest(DateCreator.date(1, 7, 2024), DateCreator.date(1, 1, 2025), 12.25)
+        new Interest(DateCreator.date(1, 7, 2024), DateCreator.date(1, 1, 2025), 12.25),
+            
+        // 2025
+        new Interest(DateCreator.date(1, 1, 2025), DateCreator.date(1, 7, 2025), 11.15)
     };
 
     public CalculatorResult generate(LocalDate start, LocalDate end, double amount) {
